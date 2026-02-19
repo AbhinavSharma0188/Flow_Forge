@@ -1,5 +1,5 @@
 import express from "express"
-import { addToHistory, createChannel, getAllChannel, getChannel, getCurrentUser, getHistory, getRecommendedContent, getSubscribedContent, toggleSubscribe, updateChannel } from "../controller/userController.js"
+import { addToHistory, createChannel, fetchChannelById, getAllChannel, getChannel, getCurrentUser, getHistory, getRecommendedContent, getSubscribedContent, toggleSubscribe, updateChannel } from "../controller/userController.js"
 import isAuth from "../middleware/isAuth.js"
 import upload from "../middleware/multer.js"
 
