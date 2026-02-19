@@ -1,5 +1,5 @@
-import Channel from "../model/channelModel.js";
 import uploadOnCloudinary from "../config/cloudinary.js";
+import Channel from "../model/channelModel.js";
 import Short from "../model/shortModel.js";
 
 
@@ -31,9 +31,12 @@ export const createShort = async (req, res) => {
       $push: { shorts: newShort._id },
     });
 
+    // Populate channel info to ensure frontend has data immediately
+    const populatedShort = await Short.findById(newShort._id).populate("channel");
+    
     res.status(201).json({
       message: "Short created successfully",
-      short: newShort,
+      short: populatedShort,
     });
   } catch (error) {
     res.status(500).json({ message: "Error creating short", error: error.message });

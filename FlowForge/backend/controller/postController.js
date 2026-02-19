@@ -30,7 +30,10 @@ export const createPost = async (req, res) => {
       $push: { communityPosts: newPost._id },
     });
 
-    return res.status(201).json(newPost);
+    // Populate channel info to ensure frontend has data immediately
+    const populatedPost = await Post.findById(newPost._id).populate("channel");
+
+    return res.status(201).json(populatedPost);
   } catch (error) {
     console.error("Create Post Error:", error);
     // Return 400 for validation/cast errors, 500 for server errors

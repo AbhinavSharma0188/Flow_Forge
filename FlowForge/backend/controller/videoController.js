@@ -1,8 +1,7 @@
 
-import Video from "../model/videoModel.js";
-import Channel from "../model/channelModel.js";
 import uploadOnCloudinary from "../config/cloudinary.js";
-import User from "../model/userModel.js";
+import Channel from "../model/channelModel.js";
+import Video from "../model/videoModel.js";
 
 
 export const createVideo = async (req, res) => {
@@ -56,9 +55,13 @@ export const createVideo = async (req, res) => {
 );
 
     // Return updated channel along with new video
-   return res.status(201).json({
+    // Populate channel info to ensure frontend has data immediately
+    const populatedVideo = await Video.findById(newVideo._id).populate("channel");
+
+    // Return updated channel along with new video
+    return res.status(201).json({
       message: "Video uploaded successfully",
-      video: newVideo
+      video: populatedVideo
     });
 
   } catch (error) {
