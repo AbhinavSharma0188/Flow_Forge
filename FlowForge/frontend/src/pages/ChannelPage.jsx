@@ -185,61 +185,89 @@ export default function ChannelPage() {
       <div className="px-6 space-y-8 ">
         {activeTab === "Videos" && (
           <div className="flex flex-wrap gap-5 pb-[40px]">
-            {channel.videos?.map((v) => (
-              <VideoCard
-                key={v._id}
-                id={v._id}
-                thumbnail={v.thumbnail}
-                duration={v.duration}
-                channelLogo={channel.avatar}
-                title={v.title}
-                channelName={channel.name}
-                views={v.views}
-              />
-            ))}
+            {channel.videos && channel.videos.length > 0 ? (
+              channel.videos.map((v) => (
+                <VideoCard
+                  key={v._id}
+                  id={v._id}
+                  thumbnail={v.thumbnail}
+                  duration={v.duration}
+                  channelLogo={channel.avatar}
+                  title={v.title}
+                  channelName={channel.name}
+                  views={v.views}
+                />
+              ))
+            ) : (
+              <div className="w-full text-center py-20 text-gray-500">
+                <h2 className="text-xl font-medium">No videos found</h2>
+                <p className="text-sm">This channel hasn't uploaded any videos yet.</p>
+              </div>
+            )}
           </div>
         )}
 
         {activeTab === "Shorts" && (
           <div className="flex gap-4 flex-wrap">
-            {channel.shorts?.map((short) => (
-              <ShortsCard
-                key={short._id}
-                id={short._id}
-                shortUrl={short.shortUrl}
-                title={short.title}
-                channelName={channel.name}
-                views={short.views}
-                avatar={channel.avatar}
-              />
-            ))}
+            {channel.shorts && channel.shorts.length > 0 ? (
+              channel.shorts.map((short) => (
+                <ShortsCard
+                  key={short._id}
+                  id={short._id}
+                  shortUrl={short.shortUrl}
+                  title={short.title}
+                  channelName={channel.name}
+                  views={short.views}
+                  avatar={channel.avatar}
+                />
+              ))
+            ) : (
+              <div className="w-full text-center py-20 text-gray-500">
+                <h2 className="text-xl font-medium">No shorts found</h2>
+                <p className="text-sm">This channel hasn't uploaded any shorts yet.</p>
+              </div>
+            )}
           </div>
         )}
 
         {activeTab === "Playlists" && (
           <div className="flex gap-5 flex-wrap">
-            {channel.playlists?.map((p) => (
-              <PlaylistCard
-                key={p._id}
-                id={p._id}
-                title={p.title}
-                videos={p.videos}
-                savedBy={p.saveBy}
-              />
-            ))}
+            {channel.playlists && channel.playlists.length > 0 ? (
+              channel.playlists.map((p) => (
+                <PlaylistCard
+                  key={p._id}
+                  id={p._id}
+                  title={p.title}
+                  videos={p.videos}
+                  savedBy={p.saveBy}
+                />
+              ))
+            ) : (
+              <div className="w-full text-center py-20 text-gray-500">
+                <h2 className="text-xl font-medium">No playlist found</h2>
+                <p className="text-sm">This channel hasn't created any playlists yet.</p>
+              </div>
+            )}
           </div>
         )}
 
         {activeTab === "Community" && (
           <div className="flex items-center justify-start gap-9 flex-wrap">
-            {allPostData
-              ?.filter(post => post.channel._id === channelId) // sirf current channel ke posts
-              .map((post) => (
-                <CommunityCard
-                  key={post._id}
-                  post={post}
-                />
-              ))}
+            {allPostData?.filter(post => post.channel._id === channelId).length > 0 ? (
+              allPostData
+                ?.filter(post => post.channel._id === channelId)
+                .map((post) => (
+                  <CommunityCard
+                    key={post._id}
+                    post={post}
+                  />
+                ))
+            ) : (
+              <div className="w-full text-center py-20 text-gray-500">
+                <h2 className="text-xl font-medium">No community posts yet</h2>
+                <p className="text-sm">This channel hasn't shared any community posts.</p>
+              </div>
+            )}
           </div>
         )}
       </div>
