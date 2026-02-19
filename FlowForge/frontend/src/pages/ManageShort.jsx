@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
-import { FaTrash, FaSave } from "react-icons/fa";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { FaSave, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 import { serverUrl } from "../App";
 import { showCustomAlert } from "../component/CustomAlert";
 import { setAllShortData } from "../redux/contentSlice";
@@ -182,7 +182,7 @@ const ManageShort = () => {
             <div className="flex justify-between items-center gap-4 mt-4">
               <button
                 onClick={handleDelete}
-                className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-lg font-medium flex items-center justify-center gap-2"
+                className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-lg font-medium flex items-center justify-center gap-2 cursor-pointer"
               >
                 <FaTrash /> Delete
               </button>
@@ -190,7 +190,7 @@ const ManageShort = () => {
               <button
                 onClick={handleUpdate}
                 disabled={updating}
-                className="flex-1 bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-medium disabled:bg-gray-600 flex items-center justify-center gap-2"
+                className="flex-1 bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-medium disabled:bg-gray-600 flex items-center justify-center gap-2 cursor-pointer"
               >
                 {updating ? (
                   <ClipLoader size={20} color="white" />
