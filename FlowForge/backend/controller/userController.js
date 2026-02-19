@@ -70,9 +70,16 @@ export const createChannel = async (req, res) => {
       channel: newChannel._id,
     });
 
-    res.status(201).json(
-      newChannel
-    );
+    // Populate before returning
+    const populatedChannel = await Channel.findById(newChannel._id)
+      .populate("owner")
+      .populate("videos")
+      .populate("shorts")
+      .populate("subscribers")
+      .populate("playlists")
+      .populate("communityPosts");
+
+    res.status(201).json(populatedChannel);
   } catch (error) {
     res.status(500).json({ message: "Error creating channel", error: error.message });
   }
@@ -113,13 +120,16 @@ export const updateChannel = async (req, res) => {
       channel.bannerImage = bannerImage;
     }
 
-    // Save updated channel
-    const updatedChannel = await channel.save();
-    
+    // Populate before returning
+    const populatedChannel = await Channel.findById(updatedChannel._id)
+      .populate("owner")
+      .populate("videos")
+      .populate("shorts")
+      .populate("subscribers")
+      .populate("playlists")
+      .populate("communityPosts");
 
-    // Do NOT overwrite user's own username/photoUrl when channel is updated
-
-    return res.status(200).json(updatedChannel);
+    return res.status(200).json(populatedChannel);
   } catch (error) {
     console.error("Update Channel Error:", error);
     return res.status(500).json({ message: "Error updating channel", error: error.message });
@@ -216,7 +226,47 @@ export const getAllChannel = async (req,res) => {
     });
   }
 }
+export const fetchChannelById = async (req, res) => {
+  try {
+    const { channelId } = req.params;
 
+    const channel = await Channel.findById(channelId)
+      .populate("owner")
+      .populate("videos")
+      .populate("shorts")
+      .populate("subscribers")
+      .populate({
+        path: "communityPosts",
+        populate: {
+          path: "channel",
+          model: "Channel",
+        },
+      })
+      .populate({
+        path: "playlists",
+        populate: {
+          path: "videos",
+          model: "Video",
+          populate: {
+            path: "channel",
+            model: "Channel",
+          },
+        },
+      });
+
+    if (!channel) {
+      return res.status(404).json({ message: "Channel not found" });
+    }
+
+    return res.status(200).json(channel);
+  } catch (error) {
+    console.error("Fetch Channel By ID Error:", error);
+    return res.status(500).json({
+      message: "Error fetching channel",
+      error: error.message,
+    });
+  }
+};
 
 
 export const toggleSubscribe = async (req, res) => {

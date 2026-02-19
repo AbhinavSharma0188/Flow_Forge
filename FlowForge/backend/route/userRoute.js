@@ -16,6 +16,7 @@ userRouter.post("/create-channel", isAuth , upload.fields([
   ]) , updateChannel)
   userRouter.get("/getchannel", isAuth, getChannel);
   userRouter.get("/getallchannel", getAllChannel);
+  userRouter.get("/fetch-channel/:channelId", fetchChannelById);
   userRouter.post("/subscribe",isAuth,toggleSubscribe)
   userRouter.get("/subscribedcontent",isAuth,getSubscribedContent)
   userRouter.post("/addhistory",isAuth,addToHistory)

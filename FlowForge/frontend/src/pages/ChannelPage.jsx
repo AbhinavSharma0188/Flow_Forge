@@ -18,14 +18,41 @@ export default function ChannelPage() {
 
   const [channel, setChannel] = useState(channelData);
   const [activeTab, setActiveTab] = useState("Videos");
-  const [loading, setLoading] = useState(false)
-  const [isSubscribed, setIsSubscribed] = useState(
-    channel?.subscribers?.some(
-      (sub) =>
-        sub._id?.toString() === userData._id?.toString() ||
-        sub?.toString() === userData._id?.toString()
-    )
-  );
+  const [loading, setLoading] = useState(false);
+
+  // ✅ Sync local state if Redux data updates
+  useEffect(() => {
+    if (channelData) {
+      setChannel(channelData);
+    }
+  }, [channelData]);
+
+  // ✅ Fetch fresh channel data on mount or ID change
+  useEffect(() => {
+    const fetchFreshChannel = async () => {
+      try {
+        const result = await axios.get(`${serverUrl}/api/user/fetch-channel/${channelId}`, { withCredentials: true });
+        setChannel(result.data);
+      } catch (error) {
+        console.error("Fetch channel error:", error);
+      }
+    };
+    fetchFreshChannel();
+  }, [channelId]);
+
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  useEffect(() => {
+    if (channel?.subscribers) {
+      setIsSubscribed(
+        channel.subscribers.some(
+          (sub) =>
+            sub._id?.toString() === userData?._id?.toString() ||
+            sub?.toString() === userData?._id?.toString()
+        )
+      );
+    }
+  }, [channel?.subscribers, userData?._id]);
 
   if (!channel) {
     return (
