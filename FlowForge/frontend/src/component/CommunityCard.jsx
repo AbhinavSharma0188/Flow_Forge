@@ -108,7 +108,7 @@ export default function CommunityCard({ post }) {
             <h3 className="text-gray-300 font-semibold mb-2">Comments</h3>
             <button
               onClick={() => setShowComments(false)}
-              className="text-gray-400 hover:text-red-500 transition"
+              className="text-gray-400 hover:text-red-500 transition cursor-pointer"
             >
               <FaTimes size={18} />
             </button>
@@ -184,7 +184,7 @@ export default function CommunityCard({ post }) {
             />
             <button
               onClick={handleAddComment}
-              className="px-4 py-2 bg-blue-600 rounded-lg text-white text-sm hover:bg-blue-700"
+              className="px-4 py-2 bg-blue-600 rounded-lg text-white text-sm hover:bg-blue-700 cursor-pointer"
             >
               Post
             </button>
@@ -227,7 +227,7 @@ function ReplyBox({ onReply }) {
           />
           <button
             onClick={handleReply}
-            className="px-3 py-1 bg-blue-600 rounded-lg text-white text-sm hover:bg-blue-700"
+            className="px-3 py-1 bg-blue-600 rounded-lg text-white text-sm hover:bg-blue-700 cursor-pointer"
           >
             Post
           </button>

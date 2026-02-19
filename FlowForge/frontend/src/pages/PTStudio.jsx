@@ -40,7 +40,7 @@ function PTStudio() {
             <img
               src={channelData.avatar || "/default-channel-avatar.svg"}
               alt={channelData.name}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-gray-600 object-cover hover:scale-105 transition"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-gray-600 object-cover hover:scale-105 transition cursor-pointer"
               onClick={() => setOpen((prev) => !prev)}
               onError={(e) => { e.target.src = "/default-channel-avatar.svg"; }}
             />
@@ -171,7 +171,7 @@ function SidebarItem({ icon, text, onClick, active, setActive }) {
         setActive(text);
         onClick();
       }}
-      className={`flex items-center gap-2 lg:gap-3 w-full px-3 py-2 rounded-lg transition-all ${isActive
+      className={`flex items-center gap-2 lg:gap-3 w-full px-3 py-2 rounded-lg transition-all cursor-pointer ${isActive
           ? "bg-[#272727] text-white shadow-md"
           : "text-gray-300 hover:bg-[#272727] hover:text-white"
         }`}
@@ -186,7 +186,7 @@ function MobileNavItem({ icon, text, onClick, active }) {
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 ${active ? "text-orange-100" : "text-gray-400"
+      className={`flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 cursor-pointer ${active ? "text-orange-100" : "text-gray-400"
         } hover:text-white hover:bg-[#272727]`}
     >
       <span className="text-xl sm:text-2xl">{icon}</span>

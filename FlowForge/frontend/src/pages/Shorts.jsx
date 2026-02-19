@@ -1,14 +1,14 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import {
-  FaArrowDown,
-  FaBookmark,
-  FaComment,
-  FaDownload,
-  FaPause,
-  FaPlay,
-  FaThumbsDown,
-  FaThumbsUp,
+    FaArrowDown,
+    FaBookmark,
+    FaComment,
+    FaDownload,
+    FaPause,
+    FaPlay,
+    FaThumbsDown,
+    FaThumbsUp,
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -353,7 +353,7 @@ const Shorts = () => {
                   e.stopPropagation();
                   handleLike(short._id);
                 }}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center cursor-pointer"
               >
                 <div
                   className={`${short?.likes?.includes(userData?._id)
@@ -378,7 +378,7 @@ const Shorts = () => {
                   e.stopPropagation();
                   handleDislike(short._id);
                 }}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center cursor-pointer"
               >
                 <div
                   className={`${short?.dislikes?.includes(userData?._id)
@@ -411,7 +411,7 @@ const Shorts = () => {
                     }));
                   }
                 }}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center cursor-pointer"
               >
                 <div className="bg-[#00000065] border border-gray-700 p-3 rounded-full hover:bg-gray-700">
                   <FaComment size={22} className="text-white" />
@@ -422,7 +422,7 @@ const Shorts = () => {
               {/* Download */}
               <button
                 onClick={(e) => handleDownload(e, short.shortUrl, short.title)}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center cursor-pointer"
               >
                 <div className="bg-[#00000065] border border-gray-700 p-3 rounded-full hover:bg-gray-700">
                   <FaDownload size={22} className="text-white" />
@@ -436,7 +436,7 @@ const Shorts = () => {
                   e.stopPropagation();
                   handleSave(short._id);
                 }}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center cursor-pointer"
               >
                 <div
                   className={`${short?.saveBy?.includes(userData?._id)
@@ -461,7 +461,7 @@ const Shorts = () => {
               <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-black/95 text-white p-4 rounded-t-2xl overflow-y-auto">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-bold text-lg">Comments</h3>
-                  <button onClick={() => setOpenCommentShortId(null)}>
+                  <button onClick={() => setOpenCommentShortId(null)} className="cursor-pointer">
                     <FaArrowDown size={20} />
                   </button>
                 </div>
@@ -477,7 +477,7 @@ const Shorts = () => {
                   />
                   <button
                     onClick={() => handleAddComment(short._id)}
-                    className="bg-black px-4 py-2  border-1 border-gray-700 rounded-xl"
+                    className="bg-black px-4 py-2  border-1 border-gray-700 rounded-xl cursor-pointer"
                   >
                     Post
                   </button>
@@ -535,7 +535,7 @@ const Shorts = () => {
                                   [comment._id]: "",
                                 }));
                               }}
-                              className="mt-1 bg-red-500 px-3 py-1 rounded text-xs"
+                              className="mt-1 bg-red-500 px-3 py-1 rounded text-xs cursor-pointer"
                             >
                               Reply
                             </button>

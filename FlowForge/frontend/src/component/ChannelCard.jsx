@@ -5,7 +5,7 @@ const ChannelCard = ({ id, name, avatar}) => {
 
   return (
     <div
-      className="flex items-center gap-4 p-4 rounded-lg border border-gray-800 hover:bg-gray-100 cursor-pointer"
+      className="flex items-center gap-4 p-4 rounded-lg border border-gray-800 hover:bg-[#272727] cursor-pointer"
       onClick={()=>navigate(`/channelpage/${id}`)}
     >
       {/* Avatar */}

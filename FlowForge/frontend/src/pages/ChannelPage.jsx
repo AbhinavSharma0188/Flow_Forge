@@ -168,7 +168,7 @@ export default function ChannelPage() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`pb-3 relative font-medium transition ${activeTab === tab
+            className={`pb-3 relative font-medium transition cursor-pointer ${activeTab === tab
               ? "text-white"
               : "text-gray-400 hover:text-white"
               }`}

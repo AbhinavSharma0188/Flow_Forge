@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 let alertHandler; // External trigger
 
@@ -25,7 +25,7 @@ export default function CustomAlert() {
           <div className="flex justify-end mt-4">
             <button
               onClick={() => setIsVisible(false)}
-              className="bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded-full text-sm"
+              className="bg-blue-500 hover:bg-blue-600 px-4 py-1 rounded-full text-sm cursor-pointer"
             >
               OK
             </button>

@@ -22,7 +22,7 @@ import Description from "../component/Description";
 import ShortsCard from "../component/ShortsCard";
 
 const IconButton = ({ icon: Icon, active, label, count, onClick }) => (
-  <button onClick={onClick} className="flex flex-col items-center">
+  <button onClick={onClick} className="flex flex-col items-center cursor-pointer">
     <div
       className={`${active ? "bg-white" : "bg-[#00000065] border border-gray-700"
         } p-3 rounded-full hover:bg-gray-700 transition`}
@@ -370,7 +370,7 @@ const WatchVideoPage = () => {
               placeholder="Add a comment..."
               className="flex-1 border border-gray-700 bg-[#1a1a1a] text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-red-600"
             />
-            <button onClick={handleAddComment} className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg">Post</button>
+            <button onClick={handleAddComment} className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg cursor-pointer">Post</button>
           </div>
 
           <div className="space-y-3">
@@ -451,7 +451,7 @@ const ReplySection = ({ comment, handleAddReply }) => {
             placeholder="Add a reply..."
             className="flex-1 border border-gray-700 bg-[#1a1a1a] text-white rounded-lg px-2 py-2 focus:outline-none focus:ring-1 focus:ring-red-600 text-sm"
           />
-          <button onClick={() => { handleAddReply(comment._id, replyText); setReplyText(""); setShowReplyInput(false); }} className="bg-red-600 hover:bg-red-700 text-white px-3 rounded-lg text-sm">Reply</button>
+          <button onClick={() => { handleAddReply(comment._id, replyText); setReplyText(""); setShowReplyInput(false); }} className="bg-red-600 hover:bg-red-700 text-white px-3 rounded-lg text-sm cursor-pointer">Reply</button>
         </div>
       )}
       <button onClick={() => setShowReplyInput(!showReplyInput)} className="ml-4 text-xs text-gray-400 mt-1 cursor-pointer hover:text-white transition">Reply</button>

@@ -198,7 +198,7 @@ function Home() {
 
             {/* Close button */}
             <button
-              className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition cursor-pointer"
               onClick={() => setPopUp(false)}
             >
               <FaTimes size={22} />
@@ -244,7 +244,7 @@ function Home() {
 
             {/* Mic button at bottom */}
             <button
-              className={`p-6 rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 ${listening
+              className={`p-6 rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 cursor-pointer ${listening
                 ? "bg-red-500 animate-pulse shadow-red-500/40"
                 : "bg-orange-500 hover:bg-orange-600 shadow-orange-500/40"
                 }`}
@@ -270,7 +270,7 @@ function Home() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="text-xl bg-[#272727] p-2 rounded-full md:inline hidden"
+              className="text-xl bg-[#272727] p-2 rounded-full md:inline hidden cursor-pointer"
             >
               <FaBars />
             </button>
@@ -406,7 +406,7 @@ function Home() {
               {categories.map((cat, idx) => (
                 <button
                   key={idx}
-                  className="whitespace-nowrap bg-[#272727] px-4 py-1 rounded-lg text-sm hover:bg-gray-700" disabled={loading1}
+                  className="whitespace-nowrap bg-[#272727] px-4 py-1 rounded-lg text-sm hover:bg-gray-700 cursor-pointer" disabled={loading1}
                   onClick={() => handleCategoryFilter(cat)}  // 👈 yaha call hoga 
                 >
                   {cat}
@@ -462,7 +462,7 @@ function SidebarItem({ icon, text, open, selected, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-4 p-2 rounded w-full transition-colors ${open ? "justify-start" : "justify-center"} ${selected ? "bg-[#272727]" : "hover:bg-[#272727]"}`}
+      className={`flex items-center gap-4 p-2 rounded w-full transition-colors cursor-pointer ${open ? "justify-start" : "justify-center"} ${selected ? "bg-[#272727]" : "hover:bg-[#272727]"}`}
     >
       <span className="text-lg">{icon}</span>
       {open && <span className="text-sm">{text}</span>}
@@ -474,7 +474,7 @@ function MobileNavItem({ icon, text, onClick, active }) {
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 ${active ? "text-white" : "text-gray-400"} hover:scale-105`}
+      className={`flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 cursor-pointer ${active ? "text-white" : "text-gray-400"} hover:scale-105`}
     >
       <span className="text-xl sm:text-2xl">{icon}</span>
       {text && <span className="text-[10px] sm:text-xs">{text}</span>}
