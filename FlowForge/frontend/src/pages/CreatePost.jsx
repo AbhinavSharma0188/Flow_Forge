@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 import { FaImage } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import { useSelector, useDispatch } from "react-redux";
 import { serverUrl } from "../App";
 import { showCustomAlert } from "../component/CustomAlert";
-import axios from "axios";
 import { setChannelData } from "../redux/userSlice";
-import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
   const { channelData } = useSelector((state) => state.user);
@@ -36,7 +36,7 @@ const CreatePost = () => {
 
       const updatedChannel = {
         ...channelData,
-        posts: [...(channelData.posts || []), res.data.post],
+        posts: [...(channelData.posts || []), res.data],
       };
       dispatch(setChannelData(updatedChannel));
 
@@ -53,7 +53,7 @@ const CreatePost = () => {
   return (
     <div className="w-full min-h-[80vh] bg-[#0f0f0f] text-white flex flex-col pt-5 items-center justify-center">
       <div className="bg-[#212121] p-6 rounded-xl w-full max-w-2xl shadow-lg space-y-4">
-        
+
         {/* Content Box */}
         <textarea
           placeholder="Write something for your community..."

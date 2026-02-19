@@ -65,11 +65,9 @@ export const createChannel = async (req, res) => {
       category
     });
 
-    // Update user: set username = channel name & photoUrl = avatar
+    // Link channel to user (do NOT overwrite username or photoUrl)
     await User.findByIdAndUpdate(userId, {
       channel: newChannel._id,
-      username: name,
-      photoUrl: avatar
     });
 
     res.status(201).json(
@@ -119,11 +117,7 @@ export const updateChannel = async (req, res) => {
     const updatedChannel = await channel.save();
     
 
-    // Optionally update user's username & photo if channel name/avatar changes
-    await User.findByIdAndUpdate(userId, {
-  username: name || undefined,
-  photoUrl: channel.avatar || undefined
-},{new:true});
+    // Do NOT overwrite user's own username/photoUrl when channel is updated
 
     return res.status(200).json(updatedChannel);
   } catch (error) {

@@ -73,16 +73,21 @@ const Profile = () => {
         {/* Profile Info */}
         {userData && <div className="flex items-center gap-3 p-4 border-b border-gray-700">
           {userData?.photoUrl ? (
-            <img
-              src={userData.photoUrl}
-              alt="Profile"
-              className="w-12 h-12 rounded-full object-cover border-1 border-gray-700"
-              referrerPolicy="no-referrer"
-              onError={(e) => {
-                console.log("Image failed to load:", userData.photoUrl);
-                e.target.style.display = 'none';
-              }}
-            />
+            <div className="relative w-12 h-12">
+              <img
+                src={userData.photoUrl}
+                alt="Profile"
+                className="w-12 h-12 rounded-full object-cover border-1 border-gray-700"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="w-12 h-12 items-center justify-center rounded-full bg-gray-700 border-1 border-gray-600 absolute top-0 left-0" style={{ display: 'none' }}>
+                <FaUserCircle className="text-3xl text-gray-400" />
+              </div>
+            </div>
           ) : (
             <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-700 border-1 border-gray-600">
               <FaUserCircle className="text-3xl text-gray-400" />
