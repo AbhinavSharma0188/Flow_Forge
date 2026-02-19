@@ -116,21 +116,21 @@ const Profile = () => {
 
         {/* Options */}
         <div className="flex flex-col py-2">
-          <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700" onClick={googleSignIn}>
+          <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={googleSignIn}>
             <FcGoogle className="text-xl" />SignIn with Google Account
           </button>
-          <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700" onClick={() => navigate("/signup")}>
+          <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/signup")}>
             <TiUserAddOutline className="text-xl" />
             Create new account
           </button>
-          <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700" onClick={() => navigate("/signin")}>
+          <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/signin")}>
             <MdOutlineSwitchAccount className="text-xl" /> SignIn with other account
           </button>
-          {userData?.channel && <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700" onClick={() => navigate("/ptstudio/dashboard")}>
+          {userData?.channel && <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/ptstudio/dashboard")}>
             <SiYoutubestudio className="w-5 h-5 text-orange-400" /> FF Studio
           </button>}
 
-          {userData && <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700" onClick={handleSignOut}>
+          {userData && <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={handleSignOut}>
             <FiLogOut className="text-xl" /> Sign out
           </button>}
         </div>

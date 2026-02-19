@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { ClipLoader } from "react-spinners";
+import { useEffect, useState } from "react";
 import { MdDelete, MdSaveAlt } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 import { serverUrl } from "../App";
 import { showCustomAlert } from "../component/CustomAlert";
 import { setAllVideoData } from "../redux/contentSlice";
@@ -167,7 +167,7 @@ const ManageVideo = () => {
           <button
             onClick={handleUpdate}
             disabled={loading}
-            className="flex-1 bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-medium flex items-center justify-center gap-2 disabled:bg-gray-600"
+            className="flex-1 bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-medium flex items-center justify-center gap-2 disabled:bg-gray-600 cursor-pointer"
           >
             {loading ? <ClipLoader size={20} color="white" /> : <MdSaveAlt size={20} />}
             {loading ? "Saving..." : "Update Video"}
@@ -175,7 +175,7 @@ const ManageVideo = () => {
           <button
             onClick={handleDelete}
             disabled={loading}
-            className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-lg font-medium flex items-center justify-center gap-2 disabled:bg-gray-600"
+            className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-lg font-medium flex items-center justify-center gap-2 disabled:bg-gray-600 cursor-pointer"
           >
             <MdDelete size={20} />
             Delete Video

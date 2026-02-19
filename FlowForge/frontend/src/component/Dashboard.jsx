@@ -123,7 +123,7 @@ function Dashboard() {
 
 function AnalyticsCard({  label, value , onClick }) {
   return (
-    <div className="bg-[#0f0f0f] border border-gray-700 rounded-lg p-3 sm:p-4 shadow hover:shadow-lg transition" onClick={onClick}>
+    <div className="bg-[#0f0f0f] border border-gray-700 rounded-lg p-3 sm:p-4 shadow hover:shadow-lg transition cursor-pointer" onClick={onClick}>
       <div className="flex items-center gap-2 text-gray-400 text-xs sm:text-sm mb-2">
        {label}
       </div>
@@ -134,7 +134,7 @@ function AnalyticsCard({  label, value , onClick }) {
 
 function ContentCard({ content, isShort = false , onClick  }) {
   return (
-    <div className="flex flex-col sm:flex-row gap-4 items-start bg-[#0f0f0f] border border-gray-700 rounded-lg p-3 sm:p-4 hover:bg-[#202020] transition" onClick={onClick}>
+    <div className="flex flex-col sm:flex-row gap-4 items-start bg-[#0f0f0f] border border-gray-700 rounded-lg p-3 sm:p-4 hover:bg-[#202020] transition cursor-pointer" onClick={onClick}>
       {/* Thumbnail */}
       <img
         src={content.thumbnail}
@@ -173,7 +173,7 @@ function ContentCard({ content, isShort = false , onClick  }) {
 
 function ContentCard1({ content , onClick }) {
   return (
-    <div className="flex flex-col sm:flex-row gap-4 items-start bg-[#0f0f0f] border border-gray-700 rounded-lg p-3 sm:p-4 hover:bg-[#202020] transition" onClick={onClick}>
+    <div className="flex flex-col sm:flex-row gap-4 items-start bg-[#0f0f0f] border border-gray-700 rounded-lg p-3 sm:p-4 hover:bg-[#202020] transition cursor-pointer" onClick={onClick}>
       {/* Thumbnail */}
        <video
           src={content.shortUrl}

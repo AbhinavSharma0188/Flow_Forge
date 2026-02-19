@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import {
-  FaBars,
-  FaHistory,
-  FaHome,
-  FaList,
-  FaMicrophone,
-  FaSearch,
-  FaThumbsUp,
-  FaTimes,
-  FaUserCircle,
+    FaBars,
+    FaHistory,
+    FaHome,
+    FaList,
+    FaMicrophone,
+    FaSearch,
+    FaThumbsUp,
+    FaTimes,
+    FaUserCircle,
 } from "react-icons/fa";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/flowforge.png";
@@ -274,7 +274,10 @@ function Home() {
             >
               <FaBars />
             </button>
-            <div className="flex items-center gap-[5px]">
+            <div 
+              className="flex items-center gap-[5px] cursor-pointer"
+              onClick={() => { setSelectedItem("Home"); navigate("/"); }}
+            >
               <img src={logo} alt="Logo" className="w-[30px]" />
               <span className="text-white font-bold text-xl tracking-tight font-roboto">
                 FlowForge
@@ -293,14 +296,14 @@ function Home() {
                 value={input}
               />
               <button
-                className="bg-[#272727] px-4 rounded-r-full border border-gray-700"
+                className="bg-[#272727] px-4 rounded-r-full border border-gray-700 cursor-pointer"
                 onClick={() => handleSearchData(input)} disabled={loading}
               >
                 {loading ? <ClipLoader size={18} color="white" /> : <FaSearch />}
               </button>
             </div>
             <button
-              className="bg-[#272727] p-3 rounded-full"
+              className="bg-[#272727] p-3 rounded-full cursor-pointer"
               onClick={() => setPopUp(true)}
             >
               <FaMicrophone />

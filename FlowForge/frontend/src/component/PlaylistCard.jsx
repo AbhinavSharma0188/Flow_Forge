@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { FaPlay, FaListUl, FaTimes, FaBookmark } from "react-icons/fa";
 import axios from "axios";
-import { serverUrl } from "../App"; // ✅ jaha se serverUrl import kar rahe ho
-import VideoCard from "./VideoCard";
+import { useState } from "react";
+import { FaBookmark, FaListUl, FaTimes } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { serverUrl } from "../App"; 
+import VideoCard from "./VideoCard";
 
 export default function PlaylistCard({ id, title, videos, savedBy }) {
   const { userData } = useSelector((state) => state.user);
@@ -45,7 +45,10 @@ export default function PlaylistCard({ id, title, videos, savedBy }) {
   return (
     <>
       {/* Playlist Card */}
-      <div className="relative w-60 h-40 rounded-xl overflow-hidden group shadow-lg bg-gray-900">
+      <div 
+        className="relative w-60 h-40 rounded-xl overflow-hidden group shadow-lg bg-gray-900 cursor-pointer"
+        onClick={() => setShowVideos(true)}
+      >
         {/* Playlist Thumbnail */}
         <img
           src={thumbnail}

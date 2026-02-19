@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { FaHeart, FaComment, FaReply, FaTimes } from "react-icons/fa";
 import axios from "axios";
-import { serverUrl } from "../App";
+import { useState } from "react";
+import { FaComment, FaHeart, FaReply, FaTimes } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { serverUrl } from "../App";
 
 export default function CommunityCard({ post }) {
   const { userData } = useSelector((state) => state.user);
@@ -212,7 +212,7 @@ function ReplyBox({ onReply }) {
       {!showReply ? (
         <button
           onClick={() => setShowReply(true)}
-          className="text-blue-400 text-sm flex items-center gap-1 hover:underline"
+          className="text-blue-400 text-sm flex items-center gap-1 hover:underline cursor-pointer"
         >
           <FaReply /> Reply
         </button>

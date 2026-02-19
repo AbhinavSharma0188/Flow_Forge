@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FaVideo, FaPlay, FaPen, FaList } from "react-icons/fa";
+import { useState } from "react";
+import { FaList, FaPen, FaPlay, FaVideo } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import create from "../assets/create.png";
 
@@ -69,7 +69,7 @@ function CreatePage() {
               Click below to start your {options.find((o) => o.id === selected)?.title.toLowerCase()}.
             </p>
             <button
-              className="bg-white text-black mt-4 px-5 py-1 rounded-full font-medium"
+              className="bg-white text-black mt-4 px-5 py-1 rounded-full font-medium cursor-pointer"
               onClick={handleCreate}
             >
               + Create

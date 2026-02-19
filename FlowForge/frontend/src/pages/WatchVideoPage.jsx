@@ -1,14 +1,23 @@
-import React, { Children, useEffect, useRef, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useEffect, useRef, useState } from "react";
 import {
-  FaPlay, FaPause, FaForward, FaBackward, FaVolumeUp, FaVolumeMute,
-  FaExpand, FaThumbsUp, FaThumbsDown, FaDownload, FaBookmark,
+    FaBackward,
+    FaBookmark,
+    FaDownload,
+    FaExpand,
+    FaForward,
+    FaPause,
+    FaPlay,
+    FaThumbsDown,
+    FaThumbsUp,
+    FaVolumeMute,
+    FaVolumeUp,
 } from "react-icons/fa";
 import { SiYoutubeshorts } from "react-icons/si";
-import { serverUrl } from "../App";
-import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
+import { serverUrl } from "../App";
 import Description from "../component/Description";
 import ShortsCard from "../component/ShortsCard";
 
@@ -315,9 +324,15 @@ const WatchVideoPage = () => {
 
         <p className="text-sm text-gray-400">{video?.views} views</p>
         <div className="flex flex-wrap items-center justify-between">
-          <div className="flex items-center justify-start gap-4" ><img src={channel?.avatar} className="w-12 h-12 rounded-full border-2 border-gray-600" alt="" onClick={() => navigate(`/channelpage/${channel._id}`)} />
+          <div className="flex items-center justify-start gap-4" >
+            <img 
+              src={channel?.avatar} 
+              className="w-12 h-12 rounded-full border-2 border-gray-600 cursor-pointer" 
+              alt="" 
+              onClick={() => navigate(`/channelpage/${channel._id}`)} 
+            />
             <div>
-              <h1 className="text-md font-bold" onClick={() => navigate(`/channelpage/${channel._id}`)}>{channel?.name}</h1>
+              <h1 className="text-md font-bold cursor-pointer" onClick={() => navigate(`/channelpage/${channel._id}`)}>{channel?.name}</h1>
               <h3 className="text-[13px]">{channel?.subscribers?.length}</h3>
             </div>
             <button
@@ -439,7 +454,7 @@ const ReplySection = ({ comment, handleAddReply }) => {
           <button onClick={() => { handleAddReply(comment._id, replyText); setReplyText(""); setShowReplyInput(false); }} className="bg-red-600 hover:bg-red-700 text-white px-3 rounded-lg text-sm">Reply</button>
         </div>
       )}
-      <button onClick={() => setShowReplyInput(!showReplyInput)} className="ml-4 text-xs text-gray-400 mt-1">Reply</button>
+      <button onClick={() => setShowReplyInput(!showReplyInput)} className="ml-4 text-xs text-gray-400 mt-1 cursor-pointer hover:text-white transition">Reply</button>
     </div>
   );
 };
