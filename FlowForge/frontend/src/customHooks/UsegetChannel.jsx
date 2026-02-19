@@ -21,7 +21,7 @@ const UsegetChannel = () => {
             }
         }
         fetchChannel()
-    }, [dispatch, userData])
+    }, [dispatch, userData?._id])
 
     useEffect(() => {
         const fetchAllChannel = async () => {

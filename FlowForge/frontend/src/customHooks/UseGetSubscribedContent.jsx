@@ -32,7 +32,7 @@ const UseGetSubscribedContent = () => {
     };
 
     fetchSubscribedContent();
-  }, [dispatch, userData]);
+  }, [dispatch, userData?._id]);
 };
 
 export default UseGetSubscribedContent;

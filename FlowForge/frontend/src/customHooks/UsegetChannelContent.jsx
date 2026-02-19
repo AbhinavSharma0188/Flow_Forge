@@ -25,7 +25,7 @@ const UsegetChannelContent = () => {
       }
     };
     fetchChannelVideos();
-  }, [channelData, dispatch, userData]);
+  }, [channelData?._id, dispatch, userData?._id]);
 
 }
 

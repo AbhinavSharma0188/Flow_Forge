@@ -21,7 +21,7 @@ const getCurrentUser = () => {
             }
         }
         fetchUser()
-    }, [channelData, dispatch])
+    }, [dispatch])
 }
 
 export default getCurrentUser
