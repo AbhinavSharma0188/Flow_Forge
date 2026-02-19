@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { ClipLoader } from "react-spinners";
+import { serverUrl } from "../App";
 import CommunityCard from "../component/CommunityCard";
 import PlaylistCard from "../component/PlaylistCard";
 import ShortsCard from "../component/ShortsCard";
 import VideoCard from "../component/VideoCard";
-import { serverUrl } from "../App";
-import { ClipLoader } from "react-spinners";
 
 export default function ChannelPage() {
   const { channelId } = useParams();
