@@ -41,7 +41,7 @@ import WatchShortPage from './pages/WatchShortPage'
 import WatchVideoPage from './pages/WatchVideoPage'
 import YoutubeSignin from './pages/YoutubeSignin'
 
-export const serverUrl = "http://localhost:8000"
+export const serverUrl = import.meta.env.VITE_SERVER_URL || "http://localhost:8000"
 
 const ProtectedRoute = ({ userData, children }) => {
   const navigate = useNavigate();
