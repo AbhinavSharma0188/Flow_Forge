@@ -30,12 +30,14 @@ export const createPost = async (req, res) => {
       $push: { communityPosts: newPost._id },
     });
 
-    res.status(201).json(
-      
-     newPost
-    );
+    return res.status(201).json(newPost);
   } catch (error) {
-    res.status(500).json({ message: "Error creating post", error: error.message });
+    console.error("Create Post Error:", error);
+    // Return 400 for validation/cast errors, 500 for server errors
+    if (error.name === "ValidationError" || error.name === "CastError") {
+      return res.status(400).json({ message: "Invalid data", error: error.message });
+    }
+    return res.status(500).json({ message: "Error creating post", error: error.message });
   }
 };
 

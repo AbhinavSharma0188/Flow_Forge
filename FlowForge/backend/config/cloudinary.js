@@ -1,6 +1,6 @@
-import { v2 as cloudinary } from 'cloudinary'
+import { v2 as cloudinary } from 'cloudinary';
 
-import fs from "fs"
+import fs from "fs";
 
 
 const uploadOnCloudinary = async (filePath) => {
@@ -18,9 +18,10 @@ try {
     fs.unlinkSync(filePath)
     return uploadResult.secure_url
 
-} catch (error) {
-    fs.unlinkSync(filePath)
-    console.log(error)
+ } catch (error) {
+    try { fs.unlinkSync(filePath) } catch (_) {}
+    console.log("Cloudinary upload error:", error)
+    return null
 }
 }
 

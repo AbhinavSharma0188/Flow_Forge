@@ -18,6 +18,10 @@ const CreatePost = () => {
   const [loading, setLoading] = useState(false);
 
   const handlePublish = async () => {
+    if (!channelData?._id) {
+      showCustomAlert("You need a channel to post! Please create a channel first.");
+      return;
+    }
     if (!content.trim()) {
       showCustomAlert("Post content is required!");
       return;
@@ -54,13 +58,31 @@ const CreatePost = () => {
     <div className="w-full min-h-[80vh] bg-[#0f0f0f] text-white flex flex-col pt-5 items-center justify-center">
       <div className="bg-[#212121] p-6 rounded-xl w-full max-w-2xl shadow-lg space-y-4">
 
-        {/* Content Box */}
-        <textarea
-          placeholder="Write something for your community..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="w-full p-3 rounded-lg bg-[#121212] border border-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none h-28"
-        />
+        {/* Channel Avatar + Textarea Row */}
+        <div className="flex items-start gap-3">
+          {/* Channel Avatar */}
+          <div className="flex-shrink-0">
+            {channelData?.avatar ? (
+              <img
+                src={channelData.avatar}
+                alt={channelData.name}
+                className="w-10 h-10 rounded-full object-cover border border-gray-600"
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg border border-gray-600">
+                {channelData?.name?.[0]?.toUpperCase() || "?"}
+              </div>
+            )}
+          </div>
+
+          {/* Content Box */}
+          <textarea
+            placeholder="Write something for your community..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="flex-1 p-3 rounded-lg bg-[#121212] border border-gray-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none h-28 resize-none"
+          />
+        </div>
 
         {/* Image Upload */}
         <label className="flex items-center space-x-3 cursor-pointer">
