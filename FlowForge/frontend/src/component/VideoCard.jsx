@@ -4,10 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const VideoCard = ({ thumbnail, duration, channelLogo, title, channelName, views, id }) => {
+const VideoCard = ({ thumbnail, duration, channelLogo, title, channelName, views, id, channelId }) => {
   const navigate = useNavigate()
-
-
 
   return (
     <div className="w-[360px] cursor-pointer" onClick={() => navigate(`/watch-video/${id}`)}>
@@ -32,10 +30,8 @@ const VideoCard = ({ thumbnail, duration, channelLogo, title, channelName, views
           className="w-10 h-10 rounded-full mr-3 object-cover bg-gray-700 cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
-            if (id) {
-              // Note: VideoCard normally receives channel details. 
-              // We'd ideally need channelId here to navigate to channel page.
-              // For now, making it look clickable as per request.
+            if (channelId) {
+              navigate(`/channelpage/${channelId}`);
             }
           }}
           onError={(e) => {
@@ -49,7 +45,17 @@ const VideoCard = ({ thumbnail, duration, channelLogo, title, channelName, views
           <h3 className="text-sm font-semibold leading-snug line-clamp-2">
             {title}
           </h3>
-          <p className="text-xs text-gray-400 mt-1">{channelName}</p>
+          <p 
+            className="text-xs text-gray-400 mt-1 cursor-pointer hover:text-white transition"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (channelId) {
+                navigate(`/channelpage/${channelId}`);
+              }
+            }}
+          >
+            {channelName}
+          </p>
           <p className="text-xs text-gray-400">
             {
               Number(views) >= 1_000_000

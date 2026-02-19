@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import VideoCard from "./VideoCard"; // your card component
 
@@ -53,6 +53,7 @@ const AllVideosPage = () => {
           views={`${video.views}`}
           time={new Date(video.createdAt).toLocaleDateString()}
           id={video._id}
+          channelId={video.channel?._id}
         />
       ))}
     </div>

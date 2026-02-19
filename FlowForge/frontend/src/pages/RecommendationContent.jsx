@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import VideoCard from "../component/VideoCard";
-import ShortsCard from "../component/ShortsCard";
 import { SiYoutubeshorts } from "react-icons/si";
+import { useSelector } from "react-redux";
+import ShortsCard from "../component/ShortsCard";
+import VideoCard from "../component/VideoCard";
 // ✅ Helper function to get duration
 const getVideoDuration = (url, callback) => {
   const video = document.createElement("video");
@@ -72,6 +72,7 @@ const RecommendationContent = () => {
                 views={`${video.views}`}
                 time={new Date(video.createdAt).toLocaleDateString()}
                 id={video._id}
+                channelId={video.channel?._id}
               />
             ))}
           </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import VideoCard from "../component/VideoCard";
 import ShortsCard from "../component/ShortsCard";
+import VideoCard from "../component/VideoCard";
 
 // ✅ Helper function to get duration
 const getVideoDuration = (url, callback) => {
@@ -65,6 +65,7 @@ const FilterResults = ({ filterResults }) => {
                     views={`${video.views}`}
                     time={new Date(video.createdAt).toLocaleDateString()}
                     id={video._id}
+                    channelId={video.channel?._id}
                   />
                 ))}
               </div>

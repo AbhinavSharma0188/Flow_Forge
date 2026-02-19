@@ -114,6 +114,7 @@ const LikedContentPage = () => {
                 views={`${video.views}`}
                 time={new Date(video.createdAt).toLocaleDateString()}
                 id={video._id}
+                channelId={video.channel?._id}
               />
             ))}
           </div>
