@@ -62,17 +62,12 @@ const CreatePost = () => {
         <div className="flex items-start gap-3">
           {/* Channel Avatar */}
           <div className="flex-shrink-0">
-            {channelData?.avatar ? (
-              <img
-                src={channelData.avatar}
-                alt={channelData.name}
-                className="w-10 h-10 rounded-full object-cover border border-gray-600"
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg border border-gray-600">
-                {channelData?.name?.[0]?.toUpperCase() || "?"}
-              </div>
-            )}
+            <img
+              src={channelData?.avatar || "/default-channel-avatar.svg"}
+              alt={channelData?.name || "Channel"}
+              className="w-10 h-10 rounded-full object-cover border border-gray-600"
+              onError={(e) => { e.target.src = "/default-channel-avatar.svg"; }}
+            />
           </div>
 
           {/* Content Box */}

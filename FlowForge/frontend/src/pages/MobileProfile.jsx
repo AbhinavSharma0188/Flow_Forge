@@ -105,7 +105,7 @@ function MobileProfile() {
         <ProfileMenuItem icon={<FaList />} text="Playlists" onClick={() => navigate("/saveplaylist")} />
         <ProfileMenuItem icon={<FaClock />} text="Save Videos" onClick={() => navigate("/savevideos")} />
         <ProfileMenuItem icon={<FaThumbsUp />} text="Liked Videos" onClick={() => navigate("/likedvideos")} />
-        {userData?.channel && <ProfileMenuItem icon={<SiYoutubestudio className="w-5 h-5 text-orange-400" />} text="PT Studio" onClick={() => navigate("/ptstudio/dashboard")} />}
+        {userData?.channel && <ProfileMenuItem icon={<SiYoutubestudio className="w-5 h-5 text-orange-400" />} text="FF Studio" onClick={() => navigate("/ptstudio/dashboard")} />}
       </div>
     </div>
   );

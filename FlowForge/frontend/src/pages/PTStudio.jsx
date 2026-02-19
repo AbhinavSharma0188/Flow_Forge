@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { FaTachometerAlt, FaChartBar, FaVideo, FaPlusCircle } from "react-icons/fa";
-import { SiYoutubestudio } from "react-icons/si";
-import Profile from "../component/Profile";
+import { useState } from "react";
+import { FaChartBar, FaPlusCircle, FaTachometerAlt, FaVideo } from "react-icons/fa";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+import { SiYoutubestudio } from "react-icons/si";
+import { useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
+import Profile from "../component/Profile";
 
 function PTStudio() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function PTStudio() {
         >
           <SiYoutubestudio className="text-orange-500 w-7 h-7" />
           <h1 className="text-lg sm:text-xl font-bold tracking-wide text-white">
-            PT <span className="text-[#ffffff]">Studio</span>
+            FF <span className="text-[#ffffff]">Studio</span>
           </h1>
         </div>
 
@@ -31,17 +31,18 @@ function PTStudio() {
         <div className="flex items-center gap-3 sm:gap-4">
           <button
             onClick={() => navigate("/createpage")}
-            className=" bg-[#272727] px-3 sm:px-4 py-1 lg:rounded-lg  rounded-full hover:bg-[#161414] active:scale-95 transition cursor-pointer text-sm sm:text-base flex items-center justify-center gap-1" 
+            className=" bg-[#272727] px-3 sm:px-4 py-1 lg:rounded-lg  rounded-full hover:bg-[#161414] active:scale-95 transition cursor-pointer text-sm sm:text-base flex items-center justify-center gap-1"
           >
-          + Create
+            + Create
           </button>
 
           {channelData ? (
             <img
-              src={channelData.avatar}
-              alt="channel avatar"
+              src={channelData.avatar || "/default-channel-avatar.svg"}
+              alt={channelData.name}
               className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-gray-600 object-cover hover:scale-105 transition"
               onClick={() => setOpen((prev) => !prev)}
+              onError={(e) => { e.target.src = "/default-channel-avatar.svg"; }}
             />
           ) : (
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gray-700" />
@@ -57,9 +58,10 @@ function PTStudio() {
           {channelData ? (
             <div className="flex flex-col items-center gap-2 mb-8 text-center">
               <img
-                src={channelData.avatar}
-                alt="channel avatar"
+                src={channelData.avatar || "/default-channel-avatar.svg"}
+                alt={channelData.name}
                 className="w-28 h-28 rounded-full border border-gray-700 object-cover shadow-md hover:scale-105 transition"
+                onError={(e) => { e.target.src = "/default-channel-avatar.svg"; }}
               />
               <h2 className="text-base lg:text-lg font-semibold">{channelData.name}</h2>
               <p className="text-xs text-gray-400">Your Channel</p>
@@ -92,7 +94,7 @@ function PTStudio() {
               onClick={() => navigate("/ptstudio/analytics")}
             />
             <SidebarItem
-              icon={<RiMoneyRupeeCircleFill className="w-6 h-6"/>}
+              icon={<RiMoneyRupeeCircleFill className="w-6 h-6" />}
               text="Revenue"
               active={active}
               setActive={setActive}
@@ -169,11 +171,10 @@ function SidebarItem({ icon, text, onClick, active, setActive }) {
         setActive(text);
         onClick();
       }}
-      className={`flex items-center gap-2 lg:gap-3 w-full px-3 py-2 rounded-lg transition-all ${
-        isActive
+      className={`flex items-center gap-2 lg:gap-3 w-full px-3 py-2 rounded-lg transition-all ${isActive
           ? "bg-[#272727] text-white shadow-md"
           : "text-gray-300 hover:bg-[#272727] hover:text-white"
-      }`}
+        }`}
     >
       <span className="text-base lg:text-lg">{icon}</span>
       <span className="text-sm lg:text-base font-medium">{text}</span>
@@ -185,9 +186,8 @@ function MobileNavItem({ icon, text, onClick, active }) {
   return (
     <button
       onClick={onClick}
-      className={`flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 ${
-        active ? "text-orange-100" : "text-gray-400"
-      } hover:text-white hover:bg-[#272727]`}
+      className={`flex flex-col items-center justify-center gap-1 px-2 sm:px-3 py-2 rounded-lg transition-all duration-300 ${active ? "text-orange-100" : "text-gray-400"
+        } hover:text-white hover:bg-[#272727]`}
     >
       <span className="text-xl sm:text-2xl">{icon}</span>
       <span className="text-[10px] sm:text-xs">{text}</span>
