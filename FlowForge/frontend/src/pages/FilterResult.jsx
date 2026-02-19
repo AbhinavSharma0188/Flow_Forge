@@ -63,7 +63,7 @@ const FilterResults = ({ filterResults }) => {
                     title={video.title}
                     channelName={video.channel?.name}
                     views={`${video.views}`}
-                    time={new Date(video.createdAt).toLocaleDateString()}
+                    createdAt={video.createdAt}
                     id={video._id}
                     channelId={video.channel?._id}
                   />
@@ -84,6 +84,7 @@ const FilterResults = ({ filterResults }) => {
                       title={short.title}
                       channelName={short.channel?.name}
                       views={short.views}
+                      createdAt={short.createdAt}
                       id={short._id}
                       avatar={short.channel?.avatar}
                     />

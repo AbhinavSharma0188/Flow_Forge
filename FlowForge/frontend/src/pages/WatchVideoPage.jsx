@@ -16,10 +16,10 @@ import {
 import { SiYoutubeshorts } from "react-icons/si";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
 import { serverUrl } from "../App";
 import Description from "../component/Description";
 import ShortsCard from "../component/ShortsCard";
+import { formatTimeAgo } from "../utils/formatTime";
 
 const IconButton = ({ icon: Icon, active, label, count, onClick }) => (
   <button onClick={onClick} className="flex flex-col items-center cursor-pointer">
@@ -322,7 +322,9 @@ const WatchVideoPage = () => {
         {/* Video Info */}
         <h1 className="mt-4 text-lg sm:text-xl font-bold text-white flex gap-3">{video?.title} </h1>
 
-        <p className="text-sm text-gray-400">{video?.views} views</p>
+        <p className="text-sm text-gray-400">
+          {video?.views} views • {video && formatTimeAgo(video.createdAt)}
+        </p>
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex items-center justify-start gap-4" >
             <img 

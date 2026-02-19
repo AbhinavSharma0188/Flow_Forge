@@ -15,6 +15,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { serverUrl } from "../App";
 import Description from "../component/Description";
+import { formatTimeAgo } from "../utils/formatTime";
 
 const WatchShortPage = () => {
   const { shortId } = useParams();
@@ -335,7 +336,7 @@ useEffect(() => {
 
               </div>
               <div className="flex items-center justify-start gap-3">
-                <h2 className="font-bold text-lg line-clamp-2">{short.title}</h2>
+                <h2 className="font-bold text-lg line-clamp-2">{short.title} • {formatTimeAgo(short.createdAt)}</h2>
               </div>
                { short?.description && <div>
   

@@ -1,10 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { formatTimeAgo } from "../utils/formatTime";
 
-
-
-
-
-const VideoCard = ({ thumbnail, duration, channelLogo, title, channelName, views, id, channelId }) => {
+const VideoCard = ({ thumbnail, duration, channelLogo, title, channelName, views, id, channelId, createdAt }) => {
   const navigate = useNavigate()
 
   return (
@@ -63,7 +60,7 @@ const VideoCard = ({ thumbnail, duration, channelLogo, title, channelName, views
                 : Number(views) >= 1_000
                   ? Math.floor(Number(views) / 1_000) + "K"
                   : Number(views) || 0
-            } views
+            } views • {formatTimeAgo(createdAt)}
           </p>
         </div>
       </div>

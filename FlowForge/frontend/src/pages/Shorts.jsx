@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { serverUrl } from "../App";
+import { formatTimeAgo } from "../utils/formatTime";
 
 const Shorts = () => {
   const { userData } = useSelector((state) => state.user);
@@ -326,7 +327,7 @@ const Shorts = () => {
 
               <div className="flex items-center justify-start gap-3">
                 <h2 className="font-bold text-lg line-clamp-2">
-                  {short.title}
+                  {short.title} • {formatTimeAgo(short.createdAt)}
                 </h2>
               </div>
 

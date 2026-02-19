@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FaComment, FaHeart, FaReply, FaTimes } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { serverUrl } from "../App";
+import { formatTimeAgo } from "../utils/formatTime";
 
 export default function CommunityCard({ post }) {
   const { userData } = useSelector((state) => state.user);
@@ -78,7 +79,7 @@ export default function CommunityCard({ post }) {
       {/* Footer */}
       <div className="flex justify-between items-center mt-4 text-gray-400 text-sm">
         <span className="italic text-gray-500">
-          {new Date(post.createdAt).toDateString()}
+          {formatTimeAgo(post.createdAt)}
         </span>
         <div className="flex gap-6">
           {/* Like Button */}
