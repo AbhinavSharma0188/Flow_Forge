@@ -11,7 +11,7 @@ import {
   FaUserCircle,
 } from "react-icons/fa";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import logo from "../assets/playtube1.png";
+import logo from "../assets/flowforge.png";
 
 import axios from "axios";
 import { GoVideo } from "react-icons/go";
@@ -277,7 +277,7 @@ function Home() {
             <div className="flex items-center gap-[5px]">
               <img src={logo} alt="Logo" className="w-[30px]" />
               <span className="text-white font-bold text-xl tracking-tight font-roboto">
-                PlayTube
+                FlowForge
               </span>
             </div>
           </div>

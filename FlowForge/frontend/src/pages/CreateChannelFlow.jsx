@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
-import logo from "../assets/youtube.png"; // PlayTube logo
-import {  useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { showCustomAlert } from "../component/CustomAlert";
-import axios from "axios";
-import { serverUrl } from "../App";
 import { ClipLoader } from "react-spinners";
+import { serverUrl } from "../App";
+import logo from "../assets/flowforge.png"; // FlowForge logo
+import { showCustomAlert } from "../component/CustomAlert";
 import { setChannelData } from "../redux/userSlice";
 
 const CreateChannelFlow = () => {
@@ -17,11 +17,11 @@ const CreateChannelFlow = () => {
   const [banner, setBanner] = useState(null);
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const {userData}  = useSelector(state=>state.user)
-  const [loading,setLoading] = useState(false)
+  const { userData } = useSelector(state => state.user)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  
+
 
   const nextStep = () => setStep((prev) => prev + 1);
   const prevStep = () => setStep((prev) => prev - 1);
@@ -32,14 +32,14 @@ const CreateChannelFlow = () => {
 
   const handleCreateChannel = async () => {
     const formData = new FormData()
-    formData.append("name",channelName);
-    formData.append("avatar",avatar);
-    formData.append("description",description);
-    formData.append("category",category);
-    formData.append("bannerImage",banner);
+    formData.append("name", channelName);
+    formData.append("avatar", avatar);
+    formData.append("description", description);
+    formData.append("category", category);
+    formData.append("bannerImage", banner);
     setLoading(true)
     try {
-      const result = await axios.post(serverUrl + "/api/user/create-channel" ,formData , {withCredentials:true})
+      const result = await axios.post(serverUrl + "/api/user/create-channel", formData, { withCredentials: true })
       console.log(result)
       showCustomAlert("Channel Created")
       dispatch(setChannelData(result.data))
@@ -50,7 +50,7 @@ const CreateChannelFlow = () => {
       showCustomAlert(error.response.data.message)
       setLoading(false)
     }
-    
+
   }
 
 
@@ -59,13 +59,13 @@ const CreateChannelFlow = () => {
       {/* HEADER */}
       <header className="flex justify-between items-center px-6 py-3 border-b border-gray-800">
         <div className="flex items-center gap-2">
-          <img src={logo} alt="PlayTube" className="w-8 h-8" />
-          <span className="text-xl font-bold">PlayTube</span>
+          <img src={logo} alt="FlowForge" className="w-8 h-8" />
+          <span className="text-xl font-bold">FlowForge</span>
         </div>
         <div className="flex items-center gap-3">
           {!userData?.photoUrl ?
             <FaUserCircle className="text-3xl cursor-pointer" /> :
-            <img src={userData?.photoUrl} className="w-9 h-9 rounded-full"/>}
+            <img src={userData?.photoUrl} className="w-9 h-9 rounded-full" />}
         </div>
       </header>
 
@@ -119,7 +119,7 @@ const CreateChannelFlow = () => {
                 onChange={(e) => setChannelName(e.target.value)}
               />
 
-              
+
 
               <button
                 onClick={nextStep}
@@ -128,7 +128,7 @@ const CreateChannelFlow = () => {
               >
                 Continue <IoIosArrowForward size={20} />
               </button>
-              <span onClick={()=>navigate("/")} className=" w-full flex items-center justify-center text-sm text-blue-400 cursor-pointer hover:underline  mt-2">Back to Home Page</span>
+              <span onClick={() => navigate("/")} className=" w-full flex items-center justify-center text-sm text-blue-400 cursor-pointer hover:underline  mt-2">Back to Home Page</span>
             </>
           )}
 
@@ -149,7 +149,7 @@ const CreateChannelFlow = () => {
                   </div>
                 )}
                 <h3 className="mt-3 text-lg font-semibold">{channelName}</h3>
-              
+
               </div>
 
               <div className="flex gap-3">
@@ -157,9 +157,9 @@ const CreateChannelFlow = () => {
                   onClick={nextStep}
                   className="flex w-full items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 py-3 rounded-lg"
                 >
-                Continue and Create Channel <IoIosArrowForward size={20} />
+                  Continue and Create Channel <IoIosArrowForward size={20} />
                 </button>
-                
+
               </div>
 
               <button
@@ -217,7 +217,7 @@ const CreateChannelFlow = () => {
                 placeholder="Category"
                 onChange={(e) => setCategory(e.target.value)}
               />
-                
+
               {/* Buttons */}
               <div className="flex justify-between">
                 <button
@@ -231,7 +231,7 @@ const CreateChannelFlow = () => {
                   disabled={loading}
                   className="bg-blue-600 hover:bg-blue-700 py-3 px-5 rounded-lg"
                 >
-                {loading ? <ClipLoader size={20} color="white"/>:"Save"}
+                  {loading ? <ClipLoader size={20} color="white" /> : "Save"}
                 </button>
               </div>
             </>

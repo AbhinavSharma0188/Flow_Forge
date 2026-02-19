@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
-import logo from "../assets/youtube.png" // <-- your PlayTube/YouTube logo
-import axios from 'axios'
 import { serverUrl } from '../App'
+import logo from "../assets/flowforge.png"; // FlowForge logo
 import { showCustomAlert } from '../component/CustomAlert'
 
 function ForgetPassword() {
@@ -18,7 +18,7 @@ function ForgetPassword() {
     const sendOtp = async () => {
         setLoading(true)
         try {
-            const result = await axios.post(serverUrl + "/api/auth/sendotp" , {email} , {withCredentials:true})
+            const result = await axios.post(serverUrl + "/api/auth/sendotp", { email }, { withCredentials: true })
             console.log(result.data)
             setLoading(false)
             setStep(2)
@@ -29,58 +29,58 @@ function ForgetPassword() {
             showCustomAlert(error.response.data.message)
             setLoading(false)
         }
-        
-     }
 
-     // step 2
-     const verifyOTP = async () => {
+    }
+
+    // step 2
+    const verifyOTP = async () => {
         setLoading(true)
         try {
-            const result = await axios.post(serverUrl + "/api/auth/verifyotp",{email , otp} , {withCredentials:true})
+            const result = await axios.post(serverUrl + "/api/auth/verifyotp", { email, otp }, { withCredentials: true })
             console.log(result.data)
             setLoading(false)
             setStep(3)
-            showCustomAlert(result.data.message) 
+            showCustomAlert(result.data.message)
 
         } catch (error) {
             console.log(error)
             toast.error(error.response.data.message)
             setLoading(false)
         }
-     }
+    }
 
-     // step 3
+    // step 3
 
-     const resetPassword = async () => {
+    const resetPassword = async () => {
         setLoading(true)
         try {
-            if(newPassword !== conPassword){
+            if (newPassword !== conPassword) {
                 setLoading(false)
                 return showCustomAlert("Password is not matched")
-            
+
             }
-            
-            const result = await axios.post(serverUrl + "/api/auth/resetpassword" , {email , password:newPassword} ,{withCredentials:true})
-             console.log(result.data)
+
+            const result = await axios.post(serverUrl + "/api/auth/resetpassword", { email, password: newPassword }, { withCredentials: true })
+            console.log(result.data)
             setLoading(false)
             navigate("/signin")
-            showCustomAlert(result.data.message) 
+            showCustomAlert(result.data.message)
 
         } catch (error) {
-              console.log(error)
+            console.log(error)
             showCustomAlert(error.response.data.message)
             setLoading(false)
         }
-     }
+    }
 
 
     return (
         <div className="min-h-screen flex flex-col bg-[#202124] text-white">
-            
+
             {/* HEADER */}
             <header className="flex items-center gap-2 p-4 border-b border-gray-700">
-                <img src={logo} alt="PlayTube" className="w-8 h-8" />
-                <span className="text-xl font-bold">PlayTube</span>
+                <img src={logo} alt="FlowForge" className="w-8 h-8" />
+                <span className="text-xl font-bold">FlowForge</span>
             </header>
 
             {/* CONTENT AREA */}

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { SiYoutubeshorts } from "react-icons/si";
-import VideoCard from "../component/VideoCard";
-import ShortsCard from "../component/ShortsCard";
-import logo from "../assets/playtube1.png";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/flowforge.png";
+import ShortsCard from "../component/ShortsCard";
+import VideoCard from "../component/VideoCard";
 
 const getVideoDuration = (url, callback) => {
   const video = document.createElement("video");
@@ -46,13 +46,13 @@ const SubscribePage = () => {
     <div className="px-6 py-4 min-h-screen">
 
       {/* 🔥 Subscribed Channels (avatars in circle) */}
-     
+
       <div className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide pt-[30px]">
         {subscribeChannel?.length > 0 ? (
           subscribeChannel.map((ch) => (
             <div
               key={ch._id}
-              className="flex flex-col items-center flex-shrink-0 cursor-pointer hover:scale-105 transition-transform duration-200" onClick={()=>navigate(`/channelpage/${ch._id}`)}
+              className="flex flex-col items-center flex-shrink-0 cursor-pointer hover:scale-105 transition-transform duration-200" onClick={() => navigate(`/channelpage/${ch._id}`)}
             >
               <img
                 src={ch.avatar}

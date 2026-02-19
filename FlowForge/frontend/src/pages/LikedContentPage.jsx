@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { SiYoutubeshorts } from "react-icons/si";
-import VideoCard from "../component/VideoCard";
-import ShortsCard from "../component/ShortsCard";
-import logo from "../assets/playtube1.png";
 import { serverUrl } from "../App";
+import logo from "../assets/flowforge.png";
+import ShortsCard from "../component/ShortsCard";
+import VideoCard from "../component/VideoCard";
 
 // Helper to get duration
 const getVideoDuration = (url, callback) => {

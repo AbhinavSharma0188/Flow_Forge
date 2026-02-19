@@ -1,10 +1,10 @@
 // src/pages/HistoryPage.jsx
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { SiYoutubeshorts } from "react-icons/si";
-import VideoCard from "../component/VideoCard";
+import { useSelector } from "react-redux";
+import logo from "../assets/flowforge.png";
 import ShortsCard from "../component/ShortsCard";
-import logo from "../assets/playtube1.png";
+import VideoCard from "../component/VideoCard";
 
 const getVideoDuration = (url, callback) => {
   const video = document.createElement("video");

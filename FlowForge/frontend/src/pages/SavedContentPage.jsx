@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { SiYoutubeshorts } from "react-icons/si";
-import VideoCard from "../component/VideoCard";
-import ShortsCard from "../component/ShortsCard";
-import logo from "../assets/playtube1.png";
 import { serverUrl } from "../App";
+import logo from "../assets/flowforge.png";
+import ShortsCard from "../component/ShortsCard";
+import VideoCard from "../component/VideoCard";
 // ✅ apna serverUrl import karna
 
 // Helper to get duration
@@ -33,15 +33,15 @@ const SavedContentPage = () => {
     const fetchSavedContent = async () => {
       try {
         // Parallel request -> shorts + videos
-       const shortsRes = await axios.get(`${serverUrl}/api/content/saveshorts`, {
-  withCredentials: true,
-});
-setSavedShorts(shortsRes.data || []);
+        const shortsRes = await axios.get(`${serverUrl}/api/content/saveshorts`, {
+          withCredentials: true,
+        });
+        setSavedShorts(shortsRes.data || []);
 
-const videosRes = await axios.get(`${serverUrl}/api/content/savevideos`, {
-  withCredentials: true,
-});
-setSavedVideos(videosRes.data || []);
+        const videosRes = await axios.get(`${serverUrl}/api/content/savevideos`, {
+          withCredentials: true,
+        });
+        setSavedVideos(videosRes.data || []);
 
         // ✅ video duration calculate karo
         if (Array.isArray(videosRes.data)) {

@@ -1,13 +1,13 @@
 /* Add these at top imports if not already added */
-import { useState, useRef } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
 import { FaArrowLeft, FaUserCircle } from "react-icons/fa";
-import { showCustomAlert } from "../component/CustomAlert";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { serverUrl } from "../App";
-import youtube from "../assets/playtube1.png"; // YouTube logo
-import { useDispatch } from "react-redux";
+import youtube from "../assets/flowforge.png"; // FlowForge logo
+import { showCustomAlert } from "../component/CustomAlert";
 import { setUserData } from "../redux/userSlice";
 
 const CreateAccount = () => {
@@ -72,7 +72,7 @@ const CreateAccount = () => {
       console.log(result.data);
       setLoading(false);
       navigate("/");
-       dispatch(setUserData(result.data))
+      dispatch(setUserData(result.data))
       showCustomAlert("Account Created");
     } catch (error) {
       console.log(error);
