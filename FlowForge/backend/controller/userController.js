@@ -120,8 +120,11 @@ export const updateChannel = async (req, res) => {
       channel.bannerImage = bannerImage;
     }
 
+    // ✅ Save changes to DB
+    await channel.save();
+
     // Populate before returning
-    const populatedChannel = await Channel.findById(updatedChannel._id)
+    const populatedChannel = await Channel.findById(channel._id)
       .populate("owner")
       .populate("videos")
       .populate("shorts")
@@ -500,13 +503,20 @@ export const getRecommendedContent = async (req, res) => {
       );
     });
 
-    // ✅ Recommended content
-    const recommendedVideos = await Video.find({ $or: videoConditions })
-      .populate("channel comments.author comments.replies.author");
+    // ✅ Recommended content — only query if keywords exist (empty $or crashes MongoDB)
+    let recommendedVideos = [];
+    let recommendedShorts = [];
 
-    const recommendedShorts = await Short.find({ $or: shortConditions })
-      .populate("channel", "name avatar")
-      .populate("likes", "username photoUrl");
+    if (videoConditions.length > 0) {
+      recommendedVideos = await Video.find({ $or: videoConditions })
+        .populate("channel comments.author comments.replies.author");
+    }
+
+    if (shortConditions.length > 0) {
+      recommendedShorts = await Short.find({ $or: shortConditions })
+        .populate("channel", "name avatar")
+        .populate("likes", "username photoUrl");
+    }
 
     // ✅ Remaining content (exclude recommended)
     const recommendedVideoIds = recommendedVideos.map(v => v._id);
