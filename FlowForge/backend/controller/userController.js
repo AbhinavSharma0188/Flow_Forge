@@ -465,27 +465,30 @@ export const getRecommendedContent = async (req, res) => {
 
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    // Collect keywords from history
-    const historyKeywords = user.history.map(h => h.contentId?.title || "");
+    // Collect keywords from history (safely)
+    const historyKeywords = (user.history || [])
+      .map(h => h.contentId?.title || "")
+      .filter(Boolean);
 
-    // Collect liked & saved content
-    const likedVideos = await Video.find({ likes: userId });
-    const likedShorts = await Short.find({ likes: userId });
-    const savedVideos = await Video.find({ saveBy: userId });
-    const savedShorts = await Short.find({ saveBy: userId });
+    // Collect liked & saved content (parallel for speed)
+    const [likedVideos, likedShorts, savedVideos, savedShorts] = await Promise.all([
+      Video.find({ likes: userId }).select("title").lean(),
+      Short.find({ likes: userId }).select("title").lean(),
+      Video.find({ saveBy: userId }).select("title").lean(),
+      Short.find({ saveBy: userId }).select("title").lean(),
+    ]);
 
     const likedSavedKeywords = [
       ...likedVideos.map(v => v.title),
       ...likedShorts.map(s => s.title),
       ...savedVideos.map(v => v.title),
       ...savedShorts.map(s => s.title),
-    ];
+    ].filter(Boolean);
 
-    // Merge all keywords
+    // Merge all keywords, split into individual words
     const allKeywords = [...historyKeywords, ...likedSavedKeywords]
-      .filter(Boolean)
-      .map(k => k.split(" ")) // split words
-      .flat();
+      .flatMap(k => k.split(" "))
+      .filter(Boolean);
 
     // ✅ Build regex conditions
     const videoConditions = [];
@@ -503,19 +506,18 @@ export const getRecommendedContent = async (req, res) => {
       );
     });
 
-    // ✅ Recommended content — only query if keywords exist (empty $or crashes MongoDB)
+    // ✅ Recommended content — guard against empty $or (crashes MongoDB)
     let recommendedVideos = [];
     let recommendedShorts = [];
 
     if (videoConditions.length > 0) {
       recommendedVideos = await Video.find({ $or: videoConditions })
-        .populate("channel comments.author comments.replies.author");
+        .populate("channel");
     }
 
     if (shortConditions.length > 0) {
       recommendedShorts = await Short.find({ $or: shortConditions })
-        .populate("channel", "name avatar")
-        .populate("likes", "username photoUrl");
+        .populate("channel", "name avatar");
     }
 
     // ✅ Remaining content (exclude recommended)
