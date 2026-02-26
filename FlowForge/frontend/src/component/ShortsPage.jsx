@@ -1,7 +1,6 @@
-import React from "react";
+import { SiYoutubeshorts } from "react-icons/si";
 import { useSelector } from "react-redux";
 import ShortsCard from "./ShortsCard";
-import { SiYoutubeshorts } from "react-icons/si";
 
 const ShortsPage = () => {
   const { allShortData } = useSelector((state) => state.content) || {};
@@ -26,6 +25,7 @@ const ShortsPage = () => {
               views={short.views}
               id={short?._id}
               avatar={short.channel?.avatar}
+              createdAt={short.createdAt}
             />
           </div>
         ))}

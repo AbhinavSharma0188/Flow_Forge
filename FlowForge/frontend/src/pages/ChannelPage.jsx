@@ -196,6 +196,7 @@ export default function ChannelPage() {
                   title={v.title}
                   channelName={channel.name}
                   views={v.views}
+                  createdAt={v.createdAt}
                 />
               ))
             ) : (
@@ -219,6 +220,7 @@ export default function ChannelPage() {
                   channelName={channel.name}
                   views={short.views}
                   avatar={channel.avatar}
+                  createdAt={short.createdAt}
                 />
               ))
             ) : (

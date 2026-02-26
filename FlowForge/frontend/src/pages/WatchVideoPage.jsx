@@ -416,6 +416,7 @@ const WatchVideoPage = () => {
         views={short.views}
         id={short._id}
         avatar={short.channel?.avatar}
+        createdAt={short.createdAt}
       />
     </div>
   ))}

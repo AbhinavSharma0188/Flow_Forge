@@ -1,6 +1,9 @@
 export const formatTimeAgo = (date) => {
+  if (!date) return "just now";
+  const parsed = new Date(date);
+  if (isNaN(parsed.getTime())) return "just now";
   const now = new Date();
-  const diffInMs = now - new Date(date);
+  const diffInMs = now - parsed;
   const diffInSeconds = Math.floor(diffInMs / 1000);
   const diffInMinutes = Math.floor(diffInSeconds / 60);
   const diffInHours = Math.floor(diffInMinutes / 60);
