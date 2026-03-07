@@ -485,9 +485,10 @@ export const getRecommendedContent = async (req, res) => {
       ...savedShorts.map(s => s.title),
     ].filter(Boolean);
 
-    // Merge all keywords, split into individual words
+    // Merge all keywords, split into individual words and escape regex special characters
     const allKeywords = [...historyKeywords, ...likedSavedKeywords]
       .flatMap(k => k.split(" "))
+      .map(kw => kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) // escape special characters
       .filter(Boolean);
 
     // ✅ Build regex conditions
